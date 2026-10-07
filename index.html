@@ -1,19 +1,1388 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z'/></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRATAMA APPAREL — Produsen Baju Olahraga & Baju Lapangan Berkualitas</title>
-    <meta name="description" content="Spesialis pembuatan jersey olahraga, kemeja PDL lapangan, jaket outdoor, dan polo shirt berkualitas. Siap kirim ke seluruh Indonesia, pemesanan cepat via WhatsApp." />
-    
-    <!-- Google Fonts: Plus Jakarta Sans for clean, modern, legible UI -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen overflow-x-hidden">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRATAMA APPAREL — Produsen Baju Olahraga & Baju Lapangan Berkualitas</title>
+  <meta name="description" content="Spesialis pembuatan jersey olahraga, kemeja PDL lapangan, jaket outdoor, dan seragam kerja. Pesan satuan atau lusinan via WhatsApp." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN (Murni browser, tanpa butuh Node.js) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Styling scrollbar halus */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen flex flex-col">
+
+  <!-- Promo Top Banner -->
+  <div class="bg-slate-900 text-slate-100 text-xs py-2 px-4 text-center font-medium">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>🔥 PROMO BULAN INI: BISA PESAN SATUAN MAUPUN SERAGAM LUSINAN (FREE DESAIN LOGO)</span>
+    </div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" onclick="toggleMobileMenu()" class="p-2 -ml-2 text-slate-700 hover:text-blue-600 lg:hidden" aria-label="Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Logo Brand -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-extrabold text-xl shadow-sm">
+              P
+            </div>
+            <div>
+              <span class="block font-bold text-lg sm:text-xl text-slate-900 tracking-tight leading-none">
+                PRATAMA APPAREL
+              </span>
+              <span class="block text-[11px] font-medium text-slate-500 mt-0.5">
+                Baju Olahraga & Lapangan
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-7">
+          <a href="#katalog" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Katalog Produk</a>
+          <a href="#keunggulan" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Keunggulan</a>
+          <a href="#custom" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Custom Seragam</a>
+          <a href="#cara-order" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Cara Order</a>
+          <a href="#faq" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">FAQ</a>
+        </nav>
+
+        <!-- Right Header Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <!-- WhatsApp Quick Button -->
+          <a id="nav-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-lg text-xs font-bold transition-colors shadow-sm">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chat WhatsApp</span>
+          </a>
+
+          <!-- Shopping Bag Trigger -->
+          <button type="button" onclick="toggleCart(true)" class="relative p-2 text-slate-700 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-100" title="Buka Daftar Pesanan">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-counter" class="hidden absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black w-5 h-5 rounded-full items-center justify-center ring-2 ring-white">
+              0
+            </span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-5 py-4 space-y-3 shadow-lg">
+      <nav class="flex flex-col space-y-2">
+        <a href="#katalog" onclick="toggleMobileMenu()" class="text-sm font-semibold text-slate-800 hover:text-blue-600 py-1">Katalog Produk</a>
+        <a href="#keunggulan" onclick="toggleMobileMenu()" class="text-sm font-semibold text-slate-800 hover:text-blue-600 py-1">Keunggulan Bahan</a>
+        <a href="#custom" onclick="toggleMobileMenu()" class="text-sm font-semibold text-slate-800 hover:text-blue-600 py-1">Custom Seragam Tim</a>
+        <a href="#cara-order" onclick="toggleMobileMenu()" class="text-sm font-semibold text-slate-800 hover:text-blue-600 py-1">Cara Order WhatsApp</a>
+        <a href="#faq" onclick="toggleMobileMenu()" class="text-sm font-semibold text-slate-800 hover:text-blue-600 py-1">FAQ & Garansi</a>
+      </nav>
+      <div class="pt-3 border-t border-slate-100">
+        <a id="mobile-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 text-white py-2.5 rounded-lg text-xs font-bold">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Chat Admin WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1">
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-white via-slate-50 to-slate-100 py-12 sm:py-20 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold rounded-full">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              <span>Konveksi & Apparel Terpercaya untuk Tim & Lapangan</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
+              Baju Olahraga & Kemeja Lapangan <span class="text-blue-600">Kuat, Adem, & Siap Pakai.</span>
+            </h1>
+
+            <p class="text-slate-600 text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+              Solusi pakaian untuk tim olahraga, instansi kantor, komunitas outdoor, dan pekerja lapangan. Dibuat dengan bahan berpori anti-gerah dan jahitan rantai kokoh. Bisa beli satuan atau custom seragam lusinan.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <a href="#katalog" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg shadow-md hover:shadow-lg transition-all">
+                <span>Lihat Katalog Produk</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+
+              <a id="hero-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-lg shadow-md hover:shadow-lg transition-all">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Order Cepat via WhatsApp</span>
+              </a>
+            </div>
+
+            <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-slate-600 font-medium border-t border-slate-200">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                <span>Bisa Pesan Satuan</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                <span>Bisa Sablon & Bordir</span>
+              </div>
+              <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+                <i data-lucide="truck" class="w-4 h-4 text-blue-600"></i>
+                <span>Kirim Se-Indonesia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white">
+              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80" alt="Apparel Olahraga & Seragam Lapangan" class="w-full h-80 sm:h-96 object-cover object-center" />
+              <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-xl border border-slate-200 shadow-md flex items-center justify-between">
+                <div>
+                  <span class="block text-[11px] font-bold text-blue-600 uppercase tracking-wider">Spesialis Apparel</span>
+                  <span class="block font-bold text-slate-900 text-sm">Jersey Olahraga & PDL Tactical</span>
+                </div>
+                <a href="#katalog" class="bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                  Pilih Produk
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Keunggulan Section -->
+    <section id="keunggulan" class="py-14 sm:py-20 bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
+            Kelebihan Produk Kami
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Kenapa Banyak Tim & Pekerja Lapangan Memilih Kami?
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Kami fokus pada kenyamanan dan daya tahan pakaian untuk Anda yang aktif bergerak di lapangan maupun saat berolahraga.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+              <i data-lucide="wind" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base">Bahan Adem & Anti-Gerah</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Menggunakan Dryfit berpori untuk jersey olahraga dan katun Ripstop/American Drill yang sejuk untuk kemeja lapangan.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+              <i data-lucide="scissors" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base">Jahitan Kuat Standar Garmen</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Jahitan rantai ganda dan bartek di saku serta ketiak agar awet dipakai aktivitas berat dan luar ruang.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+              <i data-lucide="users" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base">Bisa Pesan Satuan & Partai</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Bisa beli 1 pcs untuk konsumsi pribadi, atau pesan puluhan stel untuk seragam tim/kantor dengan harga grosir.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+              <i data-lucide="palette" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base">Bisa Sablon & Bordir Komputer</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Layanan tambah logo komunitas, nama punggung, dan identitas instansi dengan sablon DTF awet atau bordir komputer rapi.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Katalog Produk Section -->
+    <section id="katalog" class="py-14 sm:py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">
+              Katalog Siap Order
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Pilihan Baju Olahraga & Lapangan
+            </h2>
+          </div>
+          <p class="text-slate-600 text-xs sm:text-sm max-w-md">
+            Pilih model pakaian Anda. Klik <strong>Order WA</strong> untuk memesan langsung atau klik <strong>Detail</strong> untuk melihat panduan ukuran.
+          </p>
+        </div>
+
+        <!-- Filter Kategori Tabs -->
+        <div id="category-filters" class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+          <!-- Tombol kategori akan di-render oleh JavaScript -->
+        </div>
+
+        <!-- Container Grid Produk -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Kartu produk di-render oleh JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Custom Seragam Banner -->
+    <section id="custom" class="py-14 sm:py-20 bg-blue-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-blue-950/60 p-8 sm:p-12 rounded-2xl border border-blue-800 shadow-xl">
+          
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-block bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              Layanan Konveksi & Custom Seragam
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-snug">
+              Butuh Jersey Tim Olahraga atau Kemeja Seragam Lapangan Custom?
+            </h2>
+            <p class="text-blue-100 text-sm leading-relaxed max-w-2xl">
+              Kami melayani pembuatan seragam olahraga (futsal, badminton, running, voli) dan kemeja lapangan/PDL untuk komunitas, instansi dinas, sekolah, atau perusahaan:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-blue-200">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Bebas custom kombinasi warna bahan</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Bordir komputer & sablon digital anti-pecah</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Harga grosir khusus pesanan &ge; 12 pcs</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Bantuan simulasi desain mockup gratis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col items-stretch lg:items-end justify-center space-y-3">
+            <a id="custom-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-4 rounded-xl text-sm font-bold shadow-lg transition-colors text-center">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Tanya Harga Grosir Custom</span>
+            </a>
+            <span class="text-xs text-blue-300 text-center lg:text-right">
+              Konsultasi desain & bahan gratis via WhatsApp
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Langkah Cara Order Section -->
+    <section id="cara-order" class="py-14 sm:py-20 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-xl mx-auto mb-12 space-y-2">
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full">
+            Mudah & Tanpa Ribet
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Cara Order Cepat Lewat WhatsApp
+          </h2>
+          <p class="text-slate-600 text-sm">
+            Tidak perlu daftar akun atau isi formulir panjang. Transaksi langsung terhubung dengan admin kami.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg">
+              1
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Pilih Produk & Ukuran</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Lihat katalog kami dan tentukan ukuran Anda (S sampai 3XL) menggunakan panduan size chart.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg">
+              2
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Klik Pesan via WhatsApp</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Format nama barang, ukuran, dan jumlah akan otomatis tersusun rapi di aplikasi WhatsApp Anda.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg">
+              3
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Konfirmasi & Pengiriman</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Admin kami menghitung ongkir termurah, mengirimkan rekening, dan paket segera dikirim setelah transfer.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-emerald-700 text-white p-6 sm:p-8 rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2 text-emerald-200 text-xs font-bold uppercase tracking-wider">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-pulse"></span>
+              <span>Admin Online & Siap Melayani</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold">
+              Butuh Info Stok Cepat atau Pertanyaan Khusus?
+            </h3>
+            <p class="text-xs text-emerald-100 max-w-lg">
+              Hubungi WhatsApp kami di <strong id="wa-display-text">0812-3456-7890</strong>. Jam operasional: Senin - Sabtu (08.00 - 21.00 WIB).
+            </p>
+          </div>
+
+          <a id="cara-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="whitespace-nowrap bg-white hover:bg-slate-100 text-emerald-800 px-6 py-3.5 rounded-lg text-xs font-black uppercase tracking-wider inline-flex items-center gap-2 transition-colors shadow">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chat Admin WhatsApp Sekarang</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-14 sm:py-20 bg-white border-b border-slate-200">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-10 space-y-2">
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">
+            Tanya Jawab
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Pertanyaan yang Sering Diajukan
+          </h2>
+          <p class="text-slate-600 text-sm">
+            Informasi seputar cara pesan, custom bordir/sablon, minimal order, dan garansi.
+          </p>
+        </div>
+
+        <div id="faq-container" class="space-y-3">
+          <!-- Accordion FAQ di-render oleh JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-extrabold text-lg">
+              P
+            </div>
+            <span class="font-bold text-lg text-white tracking-tight">
+              PRATAMA APPAREL
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            Produsen dan konveksi spesialis baju olahraga, jersey printing sublimasi, dan kemeja seragam lapangan PDL berkualitas. Melayani pengiriman ke seluruh wilayah Indonesia.
+          </p>
+          <div class="pt-1 text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i>
+            <span>Bandung, Jawa Barat — Kirim ke Seluruh Indonesia</span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+            Menu Navigasi
+          </h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="#katalog" class="hover:text-white transition-colors">Katalog Baju Olahraga & Lapangan</a></li>
+            <li><a href="#keunggulan" class="hover:text-white transition-colors">Keunggulan Bahan & Jahitan</a></li>
+            <li><a href="#custom" class="hover:text-white transition-colors">Layanan Custom Seragam / Lusinan</a></li>
+            <li><a href="#cara-order" class="hover:text-white transition-colors">Cara Pemesanan via WhatsApp</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">Pertanyaan Umum (FAQ)</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">
+            Kontak & Kurir Pengiriman
+          </h4>
+          <p class="text-xs text-slate-400">
+            Pemesanan langsung dilayani oleh tim Admin Pratama Apparel melalui WhatsApp:
+          </p>
+          <a id="footer-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span id="footer-wa-text">WhatsApp: 0812-3456-7890</span>
+          </a>
+          <div class="text-[11px] text-slate-500 pt-1">
+            Ekspedisi: JNE, J&T, SiCepat, Lion Parcel, Dakota Kargo, Indah Cargo.
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div>
+          &copy; <span id="current-year"></span> PRATAMA APPAREL. Hak Cipta Dilindungi.
+        </div>
+        <div class="flex items-center gap-2 text-slate-400">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+          <span>Transaksi Aman Langsung ke WhatsApp</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Quick View Modal -->
+  <div id="quick-view-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative bg-white w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-2xl shadow-2xl border border-slate-200 my-auto text-slate-900" onclick="event.stopPropagation()">
+      <button type="button" onclick="closeQuickView()" class="absolute top-4 right-4 z-20 p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full transition-colors" aria-label="Tutup">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="modal-content-wrapper" class="p-6 sm:p-8">
+        <!-- Konten modal diisi secara dinamis oleh JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Slide Drawer -->
+  <div id="cart-drawer-backdrop" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="toggleCart(false)">
+  </div>
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col text-slate-900 transform translate-x-full transition-transform duration-300">
+    <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-blue-600"></i>
+        <h2 id="cart-drawer-title" class="font-bold text-lg text-slate-900">
+          Daftar Pesanan (0 item)
+        </h2>
+      </div>
+      <button type="button" onclick="toggleCart(false)" class="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition-colors" aria-label="Tutup">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4">
+      <!-- List barang di keranjang -->
+    </div>
+
+    <div id="cart-footer" class="p-5 border-t border-slate-200 bg-slate-50 space-y-4">
+      <div class="space-y-1">
+        <div class="flex justify-between text-xs text-slate-500">
+          <span>Jumlah Barang</span>
+          <span id="cart-total-qty">0 pcs</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-slate-900 pt-1 border-t border-slate-200">
+          <span>Total Estimasi</span>
+          <span id="cart-total-price" class="text-lg font-black text-blue-600">Rp 0</span>
+        </div>
+        <p class="text-[11px] text-slate-500">
+          *Ongkir dihitung saat konfirmasi alamat di WhatsApp.
+        </p>
+      </div>
+
+      <button type="button" onclick="checkoutCartToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-4 rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-colors">
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+        <span>Kirim Pesanan ke WhatsApp</span>
+      </button>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
+        <button type="button" onclick="clearCart()" class="hover:text-red-600 underline">
+          Kosongkan Tas
+        </button>
+        <span>Respon cepat dari Admin</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Pill Button -->
+  <div class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2">
+    <div id="floating-wa-bubble" class="bg-white text-slate-800 border border-slate-200 shadow-lg px-3.5 py-2 rounded-xl text-xs max-w-xs flex items-center gap-2">
+      <div>
+        <span class="font-bold text-slate-900 block text-[11px]">Butuh Bantuan Ukuran / Pesan?</span>
+        <span class="text-[11px] text-slate-500">Klik untuk chat langsung dengan CS via WA</span>
+      </div>
+      <button type="button" onclick="document.getElementById('floating-wa-bubble').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 p-0.5">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+
+    <a id="floating-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105" title="Chat WhatsApp">
+      <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+      <span class="text-xs font-bold tracking-wide pr-1">
+        Chat WhatsApp
+      </span>
+    </a>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <div class="bg-slate-900 text-white px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2.5 text-xs font-medium border border-slate-700">
+      <i data-lucide="shopping-bag" class="w-4 h-4 text-blue-400"></i>
+      <span id="toast-message">Item ditambahkan</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC (Murni Browser, Tanpa Node) -->
+  <!-- ========================================== -->
+  <script>
+    // 1. Konfigurasi Toko & WhatsApp
+    const STORE = {
+      name: "PRATAMA APPAREL",
+      whatsappNumber: "6281234567890", // Ganti dengan nomor WhatsApp aktif
+      displayPhone: "0812-3456-7890"
+    };
+
+    // 2. Data Produk
+    const PRODUCTS = [
+      {
+        id: "app-01",
+        name: "Jersey Olahraga Dryfit Milano Sublim",
+        category: "olahraga",
+        subtitle: "Futsal, Sepakbola, Badminton & Running",
+        price: 85000,
+        originalPrice: 110000,
+        badge: "Terlaris",
+        stock: "Ready Satuan & Lusinan",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Navy Biru", hex: "#1e3a8a" },
+          { name: "Hitam Solid", hex: "#0f172a" },
+          { name: "Merah Sport", hex: "#dc2626" }
+        ],
+        material: "Dryfit Milano Premium (Poripori Zigzag, Lembut & Cepat Kering)",
+        features: "Anti-bau keringat, jahitan overdeck kuat, tidak gerah saat lari / olahraga berat",
+        description: "Jersey olahraga bahan Dryfit Milano dengan sirkulasi udara maksimal. Nyaman dipakai seharian untuk olahraga intens, latihan tim, atau seragam komunitas. Bisa custom sablon nama & nomor punggung.",
+        sizeChart: "S: LD 96 cm | M: LD 100 cm | L: LD 104 cm | XL: LD 108 cm | XXL: LD 114 cm"
+      },
+      {
+        id: "app-02",
+        name: "Kemeja PDL Tactical Outdoor Quickdry",
+        category: "lapangan",
+        subtitle: "Kemeja Kerja Proyek, Surveyor & Komunitas Lapangan",
+        price: 135000,
+        originalPrice: 165000,
+        badge: "Favorit Lapangan",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80",
+        sizes: ["M", "L", "XL", "XXL", "3XL"],
+        colors: [
+          { name: "Hijau Army", hex: "#3f4e3c" },
+          { name: "Krem Khaki", hex: "#c2b280" },
+          { name: "Hitam Lapangan", hex: "#1a1a1a" }
+        ],
+        material: "Ripstop Tornado Katun Tebal & Tahan Robek",
+        features: "Ventilasi jaring punggung (air flow), 4 kantong saku fungsional, lengan bisa dilipat berkancing",
+        description: "Kemeja lapangan standar dinas dan ekspedisi. Dilengkapi sirkulasi udara jaring di punggung belakang agar tidak panas saat bekerja di bawah terik matahari. Kain serat ripstop terbukti awet dan tidak mudah sobek.",
+        sizeChart: "M: LD 104 cm | L: LD 108 cm | XL: LD 112 cm | XXL: LD 118 cm | 3XL: LD 124 cm"
+      },
+      {
+        id: "app-03",
+        name: "Kaos Polo Lapangan Lacoste Pique",
+        category: "olahraga",
+        subtitle: "Seragam Semi-Formal Komunitas, Panitia & Coach",
+        price: 75000,
+        originalPrice: 90000,
+        badge: "Best Value",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Navy Donker", hex: "#1e293b" },
+          { name: "Abu Misty", hex: "#94a3b8" },
+          { name: "Putih Bersih", hex: "#ffffff" }
+        ],
+        material: "Lacoste Pique CVC 24s (Kain Rajut Adem & Nyerap Keringat)",
+        features: "Kerah rajut tebal anti-melipat, kancing 2 baris rapi, jahitan samping rapi",
+        description: "Kaos polo wangki dengan bahan Lacoste tebal berpori. Tampilan rapi untuk pelatih olahraga, panitia turnamen, staf lapangan, maupun seragam kerja kasual. Siap bordir logo perusahaan.",
+        sizeChart: "S: LD 94 cm | M: LD 98 cm | L: LD 104 cm | XL: LD 110 cm | XXL: LD 116 cm"
+      },
+      {
+        id: "app-04",
+        name: "Jaket Parasut Windbreaker Outdoor Lapangan",
+        category: "jaket",
+        subtitle: "Tahan Angin & Gerimis Ringan untuk Motoris & Tim Luar Ruang",
+        price: 125000,
+        originalPrice: 155000,
+        badge: "Water Repellent",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+        sizes: ["M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Hitam Doff", hex: "#111827" },
+          { name: "Navy Gelap", hex: "#1e3a8a" },
+          { name: "Hijau Botol", hex: "#14532d" }
+        ],
+        material: "Taslan Mikro Latex Waterproof + Furing Jaring Breathable",
+        features: "Kantong saku samping beritsleting, penutup kepala (hoodie) serut, pergelangan karet elastis",
+        description: "Jaket pelindung angin dan gerimis ringan yang praktis dan ringan dibawa. Bagian dalam berlapis jaring sehingga tidak lengket saat berkeringat.",
+        sizeChart: "M: LD 106 cm | L: LD 110 cm | XL: LD 116 cm | XXL: LD 122 cm"
+      },
+      {
+        id: "app-05",
+        name: "Rompi Lapangan Safety Multi-Saku",
+        category: "jaket",
+        subtitle: "Rompi Pengawas Proyek, Lapangan, Jurnalis & Event",
+        price: 95000,
+        originalPrice: 120000,
+        badge: "Banyak Saku",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        sizes: ["M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Hitam", hex: "#18181b" },
+          { name: "Krem Khaki", hex: "#d4a373" },
+          { name: "Navy", hex: "#1e3a8a" }
+        ],
+        material: "American Drill Grade A (Tebal, Kokoh & Awet Bertahun-tahun)",
+        features: "6 kantong fungsional dengan perekat velcro & resleting, slot pulpen & kartu ID",
+        description: "Rompi serbaguna untuk kebutuhan staf lapangan, teknisi, fotografer, pengawas proyek, dan kegiatan outdoor. Jahitan bartek di setiap sudut saku agar tidak gampang jebol.",
+        sizeChart: "M: LD 104 cm | L: LD 110 cm | XL: LD 116 cm | XXL: LD 122 cm"
+      },
+      {
+        id: "app-06",
+        name: "Celana Training Jogger Olahraga Dryfit",
+        category: "celana",
+        subtitle: "Latihan Lari, Gym, Senam & Celana Santai Komunitas",
+        price: 80000,
+        originalPrice: 95000,
+        badge: "Elastis",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+        sizes: ["M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Hitam Garis Putih", hex: "#18181b" },
+          { name: "Abu Tua", hex: "#374151" }
+        ],
+        material: "Lotto Tebal Elastis + Sablon Strip Rapi",
+        features: "Pinggang karet serut fleksibel, 2 saku samping beritsleting aman untuk HP",
+        description: "Celana training jogger yang nyaman untuk aktivitas senam, jogging pagi, atau seragam olahraga instansi. Bahan lentur dan tidak panas.",
+        sizeChart: "M: Pinggang 68-88 cm | L: 72-94 cm | XL: 78-100 cm | XXL: 84-108 cm"
+      },
+      {
+        id: "app-07",
+        name: "Kemeja Seragam Lapangan American Drill",
+        category: "lapangan",
+        subtitle: "Kemeja Lengan Pendek / Panjang Staf Lapangan & Bengkel",
+        price: 110000,
+        originalPrice: 130000,
+        badge: "Bisa Bordir",
+        stock: "Ready Stock",
+        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Biru Benhur", hex: "#2563eb" },
+          { name: "Abu-Abu", hex: "#6b7280" },
+          { name: "Hitam", hex: "#111827" }
+        ],
+        material: "American Drill 1919 Asli (Warna Tahan Cuci & Tebal Pas)",
+        features: "2 saku dada berkancing tutup, jahitan rantai ganda, tempat pulpen di lengan",
+        description: "Kemeja kerja seragam standar industri dan UMKM. Bahan tidak luntur walau sering dicuci dan mudah disetrika.",
+        sizeChart: "S: LD 98 cm | M: LD 102 cm | L: LD 106 cm | XL: LD 112 cm | XXL: LD 118 cm"
+      },
+      {
+        id: "app-08",
+        name: "Kaos Olahraga Polos Dryfit Breathable",
+        category: "olahraga",
+        subtitle: "Kaos Latihan, Sepeda, Badminton & Running Harian",
+        price: 49000,
+        originalPrice: 65000,
+        badge: "Ekonomis",
+        stock: "Ready Ribuan Pcs",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: [
+          { name: "Hitam", hex: "#111827" },
+          { name: "Merah", hex: "#dc2626" },
+          { name: "Biru", hex: "#2563eb" },
+          { name: "Putih", hex: "#f8fafc" }
+        ],
+        material: "Dryfit Bintik Microfiber Anti-Bakteri",
+        features: "Sangat ringan (130 GSM), mudah kering dalam 30 menit jemur",
+        description: "Kaos polos olahraga serbaguna dengan harga ramah kantong. Pilihan tepat untuk seragam jalan sehat, turnamen massal, atau kaos ganti harian.",
+        sizeChart: "S: LD 94 cm | M: LD 98 cm | L: LD 102 cm | XL: LD 108 cm | XXL: LD 114 cm"
+      }
+    ];
+
+    // 3. Kategori
+    const CATEGORIES = [
+      { id: "all", label: "Semua Produk" },
+      { id: "olahraga", label: "Baju Olahraga & Jersey" },
+      { id: "lapangan", label: "Kemeja PDL & Lapangan" },
+      { id: "jaket", label: "Jaket & Rompi Lapangan" },
+      { id: "celana", label: "Celana Training & Cargo" }
+    ];
+
+    // 4. Data FAQ
+    const FAQS = [
+      {
+        q: "Apakah bisa pesan satuan atau harus lusinan?",
+        a: "Bisa! Kami melayani pembelian satuan (ready stock) maupun pesanan seragam custom partai besar (untuk tim olahraga, komunitas, instansi, atau proyek lapangan) dengan harga grosir yang lebih hemat."
+      },
+      {
+        q: "Bagaimana cara order lewat WhatsApp?",
+        a: "Cukup pilih produk yang Anda inginkan di halaman ini, pilih ukuran dan jumlah, lalu klik tombol 'Pesan via WhatsApp'. Pesan otomatis akan terbuat di WhatsApp Anda, dan tim CS kami akan langsung mengonfirmasi ketersediaan dan ongkir."
+      },
+      {
+        q: "Apakah bisa tambah sablon nama/nomor atau bordir logo?",
+        a: "Sangat bisa! Untuk jersey olahraga kami melayani sablon DTF / Polyflex / Full Print Sublimasi. Untuk kemeja lapangan & rompi kami menyediakan bordir komputer rapi. Konsultasikan file logo Anda via WhatsApp."
+      },
+      {
+        q: "Berapa lama proses pengiriman atau pengerjaan custom?",
+        a: "Untuk produk ready stock, dikirim 1 hari kerja setelah transfer. Untuk pesanan seragam custom (lusinan), estimasi produksi 4–10 hari kerja tergantung antrean dan jumlah pesanan."
+      },
+      {
+        q: "Apakah ada garansi jika ukuran salah atau produk cacat?",
+        a: "Ada garansi retur/tukar ukuran jika terjadi kesalahan kirim dari pihak kami atau terdapat cacat jahitan. Silakan hubungi CS kami maksimal 3 hari setelah barang diterima."
+      }
+    ];
+
+    // 5. State Tas Belanja
+    let cart = [];
+    try {
+      const saved = localStorage.getItem('pratama_apparel_cart');
+      if (saved) cart = JSON.parse(saved);
+    } catch(e) {}
+
+    let activeCategory = 'all';
+    let currentModalProduct = null;
+    let modalSelectedSize = 'L';
+    let modalSelectedColor = '';
+    let modalQty = 1;
+
+    // Helper Format Rupiah
+    function formatRupiah(number) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+      }).format(number).replace('IDR', 'Rp');
+    }
+
+    // Helper WhatsApp URL Builder
+    function createWaLink(text) {
+      return `https://wa.me/${STORE.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    }
+
+    // Render Kategori Tabs
+    function renderCategoryTabs() {
+      const container = document.getElementById('category-filters');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const count = cat.id === 'all' ? ` (${PRODUCTS.length})` : '';
+        const isActive = activeCategory === cat.id;
+        return `
+          <button
+            onclick="setCategory('${cat.id}')"
+            class="px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all border ${
+              isActive
+                ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                : 'bg-white text-slate-700 border-slate-300 hover:border-blue-400 hover:text-blue-600'
+            }"
+          >
+            ${cat.label}${count}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setCategory(id) {
+      activeCategory = id;
+      renderCategoryTabs();
+      renderProducts();
+    }
+
+    // Render Produk Grid
+    function renderProducts() {
+      const container = document.getElementById('product-grid');
+      const filtered = activeCategory === 'all'
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === activeCategory);
+
+      container.innerHTML = filtered.map(p => {
+        const defaultSize = p.sizes[1] || p.sizes[0] || 'L';
+        const defaultColor = (p.colors && p.colors[0]?.name) || 'Standar';
+        const waText = `Halo Admin ${STORE.name},\nSaya ingin memesan: *${p.name}*\n• Ukuran: ${defaultSize}\n• Warna: ${defaultColor}\n• Jumlah: 1 pcs (${formatRupiah(p.price)})\n\nMohon info ketersediaan stok & ongkirnya ya. Terima kasih!`;
+        const waUrl = createWaLink(waText);
+
+        return `
+          <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between">
+            <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" loading="lazy" />
+              <div class="absolute top-2 left-2">
+                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-sm">
+                  ${p.badge}
+                </span>
+              </div>
+              <button type="button" onclick="openQuickView('${p.id}')" class="absolute bottom-2 right-2 bg-white/90 hover:bg-white text-slate-800 p-2 rounded-lg shadow text-xs font-semibold flex items-center gap-1 transition-colors">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span>Detail</span>
+              </button>
+            </div>
+
+            <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+              <div>
+                <h3 onclick="openQuickView('${p.id}')" class="font-bold text-slate-900 text-base leading-snug hover:text-blue-600 cursor-pointer line-clamp-1">
+                  ${p.name}
+                </h3>
+                <p class="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                  ${p.subtitle}
+                </p>
+                <div class="mt-2 text-[11px] text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block">
+                  Bahan: <span class="font-semibold text-slate-800">${p.material.split('(')[0]}</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-100 space-y-3">
+                <div class="flex items-baseline justify-between">
+                  <div>
+                    <span class="text-lg font-black text-slate-900">
+                      ${formatRupiah(p.price)}
+                    </span>
+                    ${p.originalPrice ? `<span class="text-xs text-slate-400 line-through ml-2">${formatRupiah(p.originalPrice)}</span>` : ''}
+                  </div>
+                  <span class="text-[10px] text-emerald-700 bg-emerald-50 font-bold px-2 py-0.5 rounded border border-emerald-200">
+                    ${p.stock}
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                  <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 px-2 rounded-lg transition-colors shadow-sm">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    <span>Order WA</span>
+                  </a>
+                  <button type="button" onclick="addToCart('${p.id}', '${defaultSize}', '${defaultColor}', 1)" class="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2 px-2 rounded-lg transition-colors border border-slate-300">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                    <span>+ Ke Tas</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // Modal Quick View
+    function openQuickView(productId) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+
+      currentModalProduct = p;
+      modalSelectedSize = p.sizes[1] || p.sizes[0] || 'L';
+      modalSelectedColor = p.colors[0]?.name || 'Standar';
+      modalQty = 1;
+
+      renderModalContent();
+      document.getElementById('quick-view-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeQuickView() {
+      document.getElementById('quick-view-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      currentModalProduct = null;
+    }
+
+    function renderModalContent() {
+      const p = currentModalProduct;
+      if (!p) return;
+
+      const subtotal = p.price * modalQty;
+      const wrapper = document.getElementById('modal-content-wrapper');
+
+      wrapper.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div class="relative aspect-[4/3] rounded-xl bg-slate-100 overflow-hidden border border-slate-200">
+              <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover object-center" />
+              <div class="absolute top-3 left-3">
+                <span class="bg-amber-500 text-slate-900 text-xs font-black uppercase px-2.5 py-1 rounded shadow">
+                  ${p.badge}
+                </span>
+              </div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-[11px] text-slate-600 space-y-1">
+              <p class="flex items-center gap-1.5 font-medium text-slate-800">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                Garansi retur jika jahitan cacat atau ukuran salah kirim
+              </p>
+              <p class="flex items-center gap-1.5 font-medium text-slate-800">
+                <i data-lucide="truck" class="w-4 h-4 text-blue-600"></i>
+                Bisa kirim ke seluruh kota dan kabupaten di Indonesia
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div>
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block">
+                  ${p.category === 'olahraga' ? 'Apparel Olahraga' : 'Apparel Lapangan / Kerja'}
+                </span>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug mt-0.5">
+                  ${p.name}
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">${p.subtitle}</p>
+              </div>
+
+              <div class="flex items-baseline gap-3 pb-3 border-b border-slate-200">
+                <span class="text-2xl font-black text-slate-900">
+                  ${formatRupiah(p.price)}
+                </span>
+                ${p.originalPrice ? `<span class="text-sm text-slate-400 line-through">${formatRupiah(p.originalPrice)}</span>` : ''}
+                <span class="ml-auto text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  ${p.stock}
+                </span>
+              </div>
+
+              <div class="text-xs space-y-1 text-slate-700">
+                <p><strong>Bahan:</strong> ${p.material}</p>
+                <p><strong>Fitur:</strong> ${p.features}</p>
+              </div>
+
+              <!-- Pilihan Ukuran -->
+              <div class="space-y-1.5 pt-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-bold text-slate-800">Pilih Ukuran:</span>
+                  <button type="button" onclick="toggleSizeChart()" class="text-blue-600 hover:text-blue-800 text-[11px] font-semibold flex items-center gap-1">
+                    <i data-lucide="ruler" class="w-3.5 h-3.5"></i>
+                    <span>Size Chart</span>
+                  </button>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  ${p.sizes.map(sz => `
+                    <button
+                      type="button"
+                      onclick="selectModalSize('${sz}')"
+                      class="min-w-10 py-1 px-2.5 rounded-lg text-xs font-bold border transition-all ${
+                        modalSelectedSize === sz
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                          : 'bg-slate-50 text-slate-700 border-slate-300 hover:border-blue-400'
+                      }"
+                    >
+                      ${sz}
+                    </button>
+                  `).join('')}
+                </div>
+
+                <div id="modal-size-table" class="hidden p-3 bg-blue-50 border border-blue-200 rounded-lg text-[11px] text-blue-900 space-y-1 mt-1">
+                  <p class="font-bold">Panduan Ukuran (Standar Lokal):</p>
+                  <p class="font-mono">${p.sizeChart}</p>
+                </div>
+              </div>
+
+              <!-- Pilihan Warna -->
+              <div class="space-y-1.5 pt-1">
+                <div class="text-xs font-bold text-slate-800">
+                  Pilihan Warna: <span class="font-normal text-slate-600">${modalSelectedColor}</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  ${p.colors.map(c => `
+                    <button
+                      type="button"
+                      onclick="selectModalColor('${c.name}')"
+                      class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs border transition-all ${
+                        modalSelectedColor === c.name
+                          ? 'border-blue-600 bg-blue-50 font-bold text-blue-900'
+                          : 'border-slate-300 hover:border-slate-400 text-slate-700'
+                      }"
+                    >
+                      <span class="w-3 h-3 rounded-full border border-black/20" style="background-color: ${c.hex};"></span>
+                      <span>${c.name}</span>
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Quantity Stepper -->
+              <div class="space-y-1.5 pt-1">
+                <span class="text-xs font-bold text-slate-800 block">Jumlah:</span>
+                <div class="inline-flex items-center border border-slate-300 rounded-lg overflow-hidden">
+                  <button type="button" onclick="changeModalQty(-1)" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-sm font-bold text-slate-700">-</button>
+                  <span class="px-4 py-1 text-xs font-bold text-slate-800">${modalQty}</span>
+                  <button type="button" onclick="changeModalQty(1)" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-sm font-bold text-slate-700">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2 pt-3 border-t border-slate-200">
+              <button type="button" onclick="orderModalToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-colors">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Pesan Sekarang via WhatsApp (${formatRupiah(subtotal)})</span>
+              </button>
+              <button type="button" onclick="addModalToCart()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <span>Tambah ke Tas Belanja</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      lucide.createIcons();
+    }
+
+    function selectModalSize(sz) {
+      modalSelectedSize = sz;
+      renderModalContent();
+    }
+
+    function selectModalColor(col) {
+      modalSelectedColor = col;
+      renderModalContent();
+    }
+
+    function changeModalQty(delta) {
+      modalQty = Math.max(1, modalQty + delta);
+      renderModalContent();
+    }
+
+    function toggleSizeChart() {
+      const el = document.getElementById('modal-size-table');
+      if (el) el.classList.toggle('hidden');
+    }
+
+    function orderModalToWhatsApp() {
+      const p = currentModalProduct;
+      if (!p) return;
+      const total = p.price * modalQty;
+      const text = `Halo Admin ${STORE.name},\nSaya ingin memesan:\n\n*${p.name}*\n• Ukuran: ${modalSelectedSize}\n• Warna: ${modalSelectedColor}\n• Jumlah: ${modalQty} pcs\n• Total: ${formatRupiah(total)}\n\n*Data Pemesan:*\nNama:\nKota Pengiriman:\n\nApakah stok tersedia? Mohon info nomor rekening & ongkirnya ya. Terima kasih!`;
+      window.open(createWaLink(text), '_blank');
+    }
+
+    function addModalToCart() {
+      if (!currentModalProduct) return;
+      addToCart(currentModalProduct.id, modalSelectedSize, modalSelectedColor, modalQty);
+      closeQuickView();
+    }
+
+    // Manajemen Keranjang (Cart)
+    function addToCart(productId, size, color, qty = 1) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+
+      const chosenColor = color || (p.colors && p.colors[0]?.name) || 'Standar';
+      const existing = cart.find(x => x.id === p.id && x.size === size && x.color === chosenColor);
+
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({
+          id: p.id,
+          name: p.name,
+          price: p.price,
+          image: p.image,
+          size: size,
+          color: chosenColor,
+          quantity: qty
+        });
+      }
+
+      saveCart();
+      updateCartBadge();
+      showToast(`"${p.name}" (${size}) dimasukkan ke tas.`);
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('pratama_apparel_cart', JSON.stringify(cart));
+      } catch(e) {}
+    }
+
+    function updateCartBadge() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const counter = document.getElementById('cart-counter');
+      if (totalCount > 0) {
+        counter.textContent = totalCount;
+        counter.classList.remove('hidden');
+        counter.classList.add('flex');
+      } else {
+        counter.classList.add('hidden');
+        counter.classList.remove('flex');
+      }
+    }
+
+    function toggleCart(isOpen) {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+
+      if (isOpen) {
+        renderCartItems();
+        backdrop.classList.remove('hidden');
+        drawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+      lucide.createIcons();
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cart-items-container');
+      const title = document.getElementById('cart-drawer-title');
+      const totalQtyEl = document.getElementById('cart-total-qty');
+      const totalPriceEl = document.getElementById('cart-total-price');
+
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      title.textContent = `Daftar Pesanan (${totalQty} item)`;
+      totalQtyEl.textContent = `${totalQty} pcs`;
+      totalPriceEl.textContent = formatRupiah(totalPrice);
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="py-20 text-center space-y-3">
+            <div class="w-14 h-14 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400">
+              <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+            </div>
+            <p class="font-bold text-slate-800">Daftar pesanan masih kosong</p>
+            <p class="text-xs text-slate-500 max-w-xs mx-auto">
+              Silakan pilih produk baju olahraga atau kemeja lapangan di katalog untuk dipesan.
+            </p>
+            <button type="button" onclick="toggleCart(false)" class="px-5 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition-colors">
+              Pilih Produk
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map((item, idx) => `
+        <div class="flex gap-3 pb-4 border-b border-slate-100 last:border-b-0">
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-slate-200 bg-slate-100 flex-shrink-0" />
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-sm text-slate-900 line-clamp-1">${item.name}</h4>
+                <button type="button" onclick="removeCartItem(${idx})" class="text-slate-400 hover:text-red-600 p-1">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="text-xs text-slate-500 mt-0.5">
+                Ukuran: <strong class="text-slate-800">${item.size}</strong> | Warna: <strong class="text-slate-800">${item.color}</strong>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <div class="inline-flex items-center border border-slate-300 rounded text-xs">
+                <button type="button" onclick="changeCartItemQty(${idx}, -1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700">-</button>
+                <span class="px-3 py-0.5 font-bold text-slate-800">${item.quantity}</span>
+                <button type="button" onclick="changeCartItemQty(${idx}, 1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700">+</button>
+              </div>
+              <span class="text-sm font-black text-slate-900">
+                ${formatRupiah(item.price * item.quantity)}
+              </span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function changeCartItemQty(index, delta) {
+      if (!cart[index]) return;
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function clearCart() {
+      cart = [];
+      saveCart();
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    // Checkout Keranjang ke WhatsApp
+    function checkoutCartToWhatsApp() {
+      if (cart.length === 0) return;
+
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      let text = `Halo Admin ${STORE.name},\nSaya ingin memesan beberapa produk dari katalog web:\n\n📋 *DAFTAR PESANAN:*\n`;
+
+      cart.forEach((item, i) => {
+        text += `${i + 1}. *${item.name}*\n   Ukuran: ${item.size} | Warna: ${item.color}\n   Jumlah: ${item.quantity} pcs x ${formatRupiah(item.price)} = ${formatRupiah(item.price * item.quantity)}\n`;
+      });
+
+      text += `\n*TOTAL PESANAN : ${formatRupiah(totalPrice)}*\n\n*Data Pengiriman:*\nNama Penerima:\nNomor HP:\nAlamat / Kota:\n\nMohon info ketersediaan stok & ongkos kirimnya ya. Terima kasih!`;
+
+      window.open(createWaLink(text), '_blank');
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const text = document.getElementById('toast-message');
+      text.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Render FAQ Accordions
+    function renderFAQs() {
+      const container = document.getElementById('faq-container');
+      container.innerHTML = FAQS.map((faq, idx) => `
+        <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 transition-colors">
+          <button type="button" onclick="toggleFaq(${idx})" class="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600">
+            <span>${faq.q}</span>
+            <i id="faq-icon-${idx}" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0"></i>
+          </button>
+          <div id="faq-body-${idx}" class="hidden px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200 pt-3 bg-white">
+            ${faq.a}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFaq(idx) {
+      const body = document.getElementById(`faq-body-${idx}`);
+      const icon = document.getElementById(`faq-icon-${idx}`);
+      if (!body) return;
+
+      const isHidden = body.classList.contains('hidden');
+      body.classList.toggle('hidden');
+      if (isHidden) {
+        icon.classList.add('rotate-180', 'text-blue-600');
+      } else {
+        icon.classList.remove('rotate-180', 'text-blue-600');
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Setup Tautan WhatsApp Global
+    function setupWhatsAppLinks() {
+      const defaultText = `Halo Admin ${STORE.name}, saya ingin menanyakan seputar pesanan baju olahraga / seragam lapangan.`;
+      const defaultUrl = createWaLink(defaultText);
+
+      document.getElementById('nav-wa-btn').href = defaultUrl;
+      document.getElementById('mobile-wa-btn').href = defaultUrl;
+      document.getElementById('hero-wa-btn').href = defaultUrl;
+      document.getElementById('custom-wa-btn').href = createWaLink(`Halo Admin ${STORE.name}, saya ingin konsultasi pembuatan seragam custom / harga partai lusinan.`);
+      document.getElementById('cara-wa-btn').href = defaultUrl;
+      document.getElementById('footer-wa-btn').href = defaultUrl;
+      document.getElementById('floating-wa-link').href = defaultUrl;
+
+      document.getElementById('wa-display-text').textContent = STORE.displayPhone;
+      document.getElementById('footer-wa-text').textContent = `WhatsApp: ${STORE.displayPhone}`;
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    }
+
+    // Inisialisasi Saat Dokumen Dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      setupWhatsAppLinks();
+      renderCategoryTabs();
+      renderProducts();
+      renderFAQs();
+      updateCartBadge();
+      lucide.createIcons();
+    });
+  </script>
+</body>
 </html>
